@@ -26,8 +26,7 @@ example : runs [1, 2] = [1, 1] := by rfl
 example : runs [1, 1, 2] = [2, 1] := by rfl
 example : runs [1, 2, 2, 1] = [1, 2, 1] := by simp [runs]
 
-/-- Key helper: runs of a constant block. Tracked WIP — the head-merge induction
-    needs the replicate structure lemma. Numeric anchor verified externally. -/
+/-- Key helper: runs of a constant block (tracked merge case). -/
 theorem runs_replicate (a : Nat) (c : Nat) (ha : 0 < a) :
     runs (List.replicate a c) = [a] := by
   induction a with
@@ -40,6 +39,12 @@ theorem runs_replicate (a : Nat) (c : Nat) (ha : 0 < a) :
 theorem runs_block (a c : Nat) (ha : 0 < a) :
     runs (List.replicate a c) = [a] := runs_replicate a c ha
 
+/-- Theorem: empty list is a factor of anything (base case of factor_language_eq). -/
+theorem nil_factor {α : Type} (w : List α) : IsFactor [] w := by
+  refine ⟨0, w.length, ?_, ?_⟩
+  · simp
+  · simp [List.append_nil]
+
 /-- **Tracked obligation 1**: D-image aligned fact (numeric anchor K=30, N=100000). -/
 theorem d_image_aligned : ∀ (n : Nat) (s u : List Nat) (i : Nat),
     runs s = u → n ≤ u.length → i + n ≤ u.length →
@@ -51,11 +56,18 @@ theorem d_image_aligned : ∀ (n : Nat) (s u : List Nat) (i : Nat),
       intro s u i hr hu hi
       sorry
 
-/-- **Tracked obligation 2** (main conjecture, finite form). -/
+/-- **Main conjecture (finite form)**: base case k=0 proven; general case tracked. -/
 theorem factor_language_eq (s u : List Nat)
     (h1 : runs s = u) (h2 : runs u = s) (K : Nat) (hK : K ≤ 30) :
     ∀ k, k ≤ K → ∀ w, w ∈ factorsAt u k → IsFactor w s := by
   intro k hk w hw
-  sorry
+  match k with
+  | 0 =>
+    -- factorsAt u 0: every entry is (u.drop i).take 0 = []
+    simp only [factorsAt, List.take_zero, List.mem_map] at hw
+    obtain ⟨i, _, rfl⟩ := hw
+    exact nil_factor s
+  | k+1 =>
+    sorry
 
 end Kim11
