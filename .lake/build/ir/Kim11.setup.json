@@ -1,0 +1,8 @@
+{"plugins": [],
+ "package": "kim11",
+ "options": {},
+ "name": "Kim11",
+ "isModule": false,
+ "importArts":
+ {"Kim11.Basic": ["/root/kim11-lean/.lake/build/lib/lean/Kim11/Basic.olean"]},
+ "dynlibs": []}

@@ -1,0 +1,33 @@
+{"synthetic": false,
+ "schemaVersion": "2025-09-10",
+ "outputs":
+ {"o": ["286f022729fbe668.olean"],
+  "m": false,
+  "i": "5bd8bbe39d039890.ilean",
+  "c": "d23b37a7e59435e0.c"},
+ "log":
+ [{"message":
+   ".> LEAN_PATH=/root/kim11-lean/.lake/build/lib/lean /root/.elan/toolchains/leanprover--lean4---v4.32.1/bin/lean /root/kim11-lean/Kim11/Basic.lean -o /root/kim11-lean/.lake/build/lib/lean/Kim11/Basic.olean -i /root/kim11-lean/.lake/build/lib/lean/Kim11/Basic.ilean -c /root/kim11-lean/.lake/build/ir/Kim11/Basic.c --setup /root/kim11-lean/.lake/build/ir/Kim11/Basic.setup.json --json",
+   "level": "trace"},
+  {"message":
+   "Kim11/Basic.lean:6:5: Variable name `x` is not explicitly referenced.\n\nThe binding can be removed (if unused) or named `_` (if used implicitly).\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`",
+   "level": "warning"}],
+ "inputs":
+ [["Kim11.Basic:deps",
+   [["deps",
+     [["kim11/Kim11:extraDep", [["@kim11:extraDep", "00000000000006bb"]]],
+      ["imports", "00000000000006bb"]]],
+    ["libs",
+     [["import dynlibs", "00000000000006bb"],
+      ["package external libraries", "00000000000006bb"],
+      ["module dynlibs", "00000000000006bb"],
+      ["module plugins", "00000000000006bb"]]]]],
+  ["Lean 4.32.1, commit f054605aea4b840552cca2e725580bffd1e1b704",
+   "4ce1780d8d26fd00"],
+  ["/root/kim11-lean/Kim11/Basic.lean", "bc811403df958868"],
+  ["options", "00000000000006bb"],
+  ["isModule: false", "feefd2a0d3a1847e"],
+  ["Module.name: Kim11.Basic", "4fe249e971735181"],
+  ["Package.id?: (some kim11)", "8317ab34a5f08fc0"],
+  ["Module.leanArgs: #[]", "00000000000006bb"]],
+ "depHash": "c6f5a3de3bf78369"}

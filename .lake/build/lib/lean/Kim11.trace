@@ -1,0 +1,32 @@
+{"synthetic": false,
+ "schemaVersion": "2025-09-10",
+ "outputs":
+ {"o": ["59cab33c8ce9850f.olean"],
+  "m": false,
+  "i": "603eda90e9357738.ilean",
+  "c": "d56029f3e3b7ec04.c"},
+ "log":
+ [{"message":
+   ".> LEAN_PATH=/root/kim11-lean/.lake/build/lib/lean /root/.elan/toolchains/leanprover--lean4---v4.32.1/bin/lean /root/kim11-lean/Kim11.lean -o /root/kim11-lean/.lake/build/lib/lean/Kim11.olean -i /root/kim11-lean/.lake/build/lib/lean/Kim11.ilean -c /root/kim11-lean/.lake/build/ir/Kim11.c --setup /root/kim11-lean/.lake/build/ir/Kim11.setup.json --json",
+   "level": "trace"}],
+ "inputs":
+ [["Kim11:deps",
+   [["deps",
+     [["kim11/Kim11:extraDep", [["@kim11:extraDep", "00000000000006bb"]]],
+      ["imports",
+       [["Kim11.Basic transitive imports (legacy)", "00000000000006bb"],
+        ["Kim11.Basic:importAllArts", "11cfc8e47e119e2f"]]]]],
+    ["libs",
+     [["import dynlibs", "00000000000006bb"],
+      ["package external libraries", "00000000000006bb"],
+      ["module dynlibs", "00000000000006bb"],
+      ["module plugins", "00000000000006bb"]]]]],
+  ["Lean 4.32.1, commit f054605aea4b840552cca2e725580bffd1e1b704",
+   "4ce1780d8d26fd00"],
+  ["/root/kim11-lean/Kim11.lean", "800561fbb824b3b4"],
+  ["options", "00000000000006bb"],
+  ["isModule: false", "feefd2a0d3a1847e"],
+  ["Module.name: Kim11", "216938ccc8b641bd"],
+  ["Package.id?: (some kim11)", "8317ab34a5f08fc0"],
+  ["Module.leanArgs: #[]", "00000000000006bb"]],
+ "depHash": "c21b52f7240d45ad"}
