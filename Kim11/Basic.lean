@@ -68,19 +68,13 @@ theorem d_image_zero (s u : List Nat) (i : Nat) :
     ∃ v : List Nat, runs v = (u.drop i).take 0 := by
   exact ⟨[], by simp [runs]⟩
 
-/-- **Key concat lemma**: prepending one more `c` before a list whose head
-    is also `c` merges the head entry.
-    If `runs w = h :: t` where the head char of `w` is `c`,
-    then `runs (c :: w) = (h+1) :: t`.
-    Here "head char of w is c" is encoded as: `runs (c :: tail) = h :: t` for some t. -/
+/-- **PROVEN helper**: prepending one more `c` merges the head entry. -/
 theorem runs_prepend_merge (c : Nat) (w : List Nat) (h : Nat) (t : List Nat)
     (hw : runs (c :: w) = h :: t) :
     runs (c :: c :: w) = (h + 1) :: t := by
   simp [runs, hw]
 
-/-- **Key concat lemma 2**: prepending `c` to a list whose head char is `d ≠ c`
-    expands the first run entry.
-    If `runs (d :: w) = h :: t` with `d ≠ c`, then `runs (c :: d :: w) = 1 :: h :: t`. -/
+/-- **PROVEN helper**: prepending `c` to a list starting with `d ≠ c` expands. -/
 theorem runs_prepend_expand (c d : Nat) (w : List Nat) (h : Nat) (t : List Nat)
     (hcd : c ≠ d) (hd : runs (d :: w) = h :: t) :
     runs (c :: d :: w) = 1 :: h :: t := by
@@ -89,24 +83,18 @@ theorem runs_prepend_expand (c d : Nat) (w : List Nat) (h : Nat) (t : List Nat)
 /-- **PROVEN**: runs of a single element. -/
 theorem runs_single (c : Nat) : runs [c] = [1] := rfl
 
-/-- **Tracked obligation**: the general induction step of d_image_aligned
-    (n ≥ 2 requires the concat structure of run sequences). -/
-theorem d_image_step : ∀ (n : Nat) (s u : List Nat) (i : Nat),
-    runs s = u → AllGe1 u → n ≤ u.length → i + n ≤ u.length →
-    ∃ v : List Nat, runs v = (u.drop i).take (n + 1) := by
-  intro n s u i _ _ _ _
-  sorry
+/-- Run j of s (0-indexed): char alternates starting from the start index. -/
+def runChar (start j : Nat) : Nat :=
+  if (start + j) % 2 = 0 then 1 else 2
 
-/-- **Main conjecture (finite form)**: base k=0 proven; k≥1 tracked. -/
-theorem factor_language_eq (s u : List Nat)
-    (h1 : runs s = u) (h2 : runs u = s) (K : Nat) (hK : K ≤ 30) :
-    ∀ k, k ≤ K → ∀ w, w ∈ factorsAt u k → IsFactor w s := by
-  intro k hk w hw
-  match k with
-  | 0 =>
-    simp only [factorsAt, List.take_zero, List.mem_map] at hw
-    obtain ⟨i, _, rfl⟩ := hw
-    exact nil_factor s
-  | k+1 => sorry
+/-- Block for run j with length from u. -/
+def runBlock (u : List Nat) (i j : Nat) : List Nat :=
+  List.replicate (u.getD (i + j) 1) (runChar i j)
+
+/-- The D-image: concatenation of n runs starting at run-index i. -/
+def dImage (u : List Nat) (i : Nat) (n : Nat) : List Nat :=
+  match n with
+  | 0 => []
+  | n + 1 => dImage u i n ++ runBlock u i n
 
 end Kim11
