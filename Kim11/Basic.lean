@@ -89,4 +89,24 @@ theorem runs_prepend_expand (c d : Nat) (w : List Nat) (h : Nat) (t : List Nat)
 /-- **PROVEN**: runs of a single element. -/
 theorem runs_single (c : Nat) : runs [c] = [1] := rfl
 
+/-- **Tracked obligation**: the general induction step of d_image_aligned
+    (n ≥ 2 requires the concat structure of run sequences). -/
+theorem d_image_step : ∀ (n : Nat) (s u : List Nat) (i : Nat),
+    runs s = u → AllGe1 u → n ≤ u.length → i + n ≤ u.length →
+    ∃ v : List Nat, runs v = (u.drop i).take (n + 1) := by
+  intro n s u i _ _ _ _
+  sorry
+
+/-- **Main conjecture (finite form)**: base k=0 proven; k≥1 tracked. -/
+theorem factor_language_eq (s u : List Nat)
+    (h1 : runs s = u) (h2 : runs u = s) (K : Nat) (hK : K ≤ 30) :
+    ∀ k, k ≤ K → ∀ w, w ∈ factorsAt u k → IsFactor w s := by
+  intro k hk w hw
+  match k with
+  | 0 =>
+    simp only [factorsAt, List.take_zero, List.mem_map] at hw
+    obtain ⟨i, _, rfl⟩ := hw
+    exact nil_factor s
+  | k+1 => sorry
+
 end Kim11
