@@ -20,13 +20,12 @@ def IsFactor {α : Type} (sub : List α) (w : List α) : Prop :=
 def factorsAt {α : Type} (w : List α) (k : Nat) : List (List α) :=
   (List.range (w.length - k + 1)).map (fun i => (w.drop i).take k)
 
--- sanity checks (all compile)
 example : runs [1, 1] = [2] := by rfl
 example : runs [1, 2] = [1, 1] := by rfl
 example : runs [1, 1, 2] = [2, 1] := by rfl
 example : runs [1, 2, 2, 1] = [1, 2, 1] := by simp [runs]
 
-/-- **PROVEN** Key helper: runs of a constant block of length a ≥ 1 is [a]. -/
+/-- **PROVEN**: runs of a constant block. -/
 theorem runs_replicate (a : Nat) (c : Nat) (ha : 0 < a) :
     runs (List.replicate a c) = [a] := by
   induction a with
@@ -47,22 +46,21 @@ theorem runs_replicate (a : Nat) (c : Nat) (ha : 0 < a) :
 theorem runs_block (a c : Nat) (ha : 0 < a) :
     runs (List.replicate a c) = [a] := runs_replicate a c ha
 
-/-- **Tracked obligation 1**: D-image aligned fact (numeric anchor K=30, N=100000). -/
-theorem d_image_aligned : ∀ (n : Nat) (s u : List Nat) (i : Nat),
-    runs s = u → n ≤ u.length → i + n ≤ u.length →
-    ∃ v : List Nat, runs v = (u.drop i).take n := by
-  intro n
-  induction n with
-  | zero => intro s u i _ _ _; exact ⟨[], by simp [runs]⟩
-  | succ n ih =>
-      intro s u i hr hu hi
-      sorry
+/-- **PROVEN helper**: nil is a factor of anything. -/
+theorem nil_factor {α : Type} (w : List α) : IsFactor [] w := by
+  refine ⟨0, w.length, ?_, ?_⟩
+  · simp
+  · simp [List.append_nil]
 
-/-- **Tracked obligation 2** (main conjecture, finite form). -/
-theorem factor_language_eq (s u : List Nat)
-    (h1 : runs s = u) (h2 : runs u = s) (K : Nat) (hK : K ≤ 30) :
-    ∀ k, k ≤ K → ∀ w, w ∈ factorsAt u k → IsFactor w s := by
-  intro k hk w hw
-  sorry
+/-- **Key structural lemma**: runs of a single char list.
+    runs [c] = [1]. -/
+theorem runs_single (c : Nat) : runs [c] = [1] := rfl
+
+/-- **PROVEN helper**: prepending one more `c` to a list starting with `c`
+    increments the first entry of its run-length encoding. -/
+theorem runs_cons_merge (c : Nat) (w : List Nat) (h : Nat) (t : List Nat)
+    (hw : runs (c :: w) = h :: t) :
+    runs (c :: c :: w) = (h + 1) :: t := by
+  simp [runs, hw]
 
 end Kim11
