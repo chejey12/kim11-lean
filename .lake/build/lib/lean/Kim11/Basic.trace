@@ -1,10 +1,10 @@
 {"synthetic": false,
  "schemaVersion": "2025-09-10",
  "outputs":
- {"o": ["34c8cc65e1608f04.olean"],
+ {"o": ["0efb6b0b2e83d6e4.olean"],
   "m": false,
-  "i": "47d4757e868bd07a.ilean",
-  "c": "89f73f16d1a8f09e.c"},
+  "i": "c6349bdfd8aa038e.ilean",
+  "c": "fb6488a233269cca.c"},
  "log":
  [{"message":
    ".> LEAN_PATH=/root/kim11-lean/.lake/build/lib/lean /root/.elan/toolchains/leanprover--lean4---v4.32.1/bin/lean /root/kim11-lean/Kim11/Basic.lean -o /root/kim11-lean/.lake/build/lib/lean/Kim11/Basic.olean -i /root/kim11-lean/.lake/build/lib/lean/Kim11/Basic.ilean -c /root/kim11-lean/.lake/build/ir/Kim11/Basic.c --setup /root/kim11-lean/.lake/build/ir/Kim11/Basic.setup.json --json",
@@ -33,7 +33,8 @@
   {"message":
    "Kim11/Basic.lean:120:10: This simp argument is unused:\n  List.take_append_drop\n\nHint: Omit it from the simp argument list.\n  simp ̵[̵L̵i̵s̵t̵.̵t̵a̵k̵e̵_̵a̵p̵p̵e̵n̵d̵_̵d̵r̵o̵p̵]̵\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`",
    "level": "warning"},
-  {"message": "Kim11/Basic.lean:136:8: declaration uses `sorry`",
+  {"message":
+   "Kim11/Basic.lean:137:5: Variable name `hne` is not explicitly referenced.\n\nThe binding can be removed (if unused) or named `_` (if used implicitly).\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`",
    "level": "warning"}],
  "inputs":
  [["Kim11.Basic:deps",
@@ -47,10 +48,10 @@
       ["module plugins", "00000000000006bb"]]]]],
   ["Lean 4.32.1, commit f054605aea4b840552cca2e725580bffd1e1b704",
    "4ce1780d8d26fd00"],
-  ["/root/kim11-lean/Kim11/Basic.lean", "5cbb4691a7ab9026"],
+  ["/root/kim11-lean/Kim11/Basic.lean", "3716168b393bda57"],
   ["options", "00000000000006bb"],
   ["isModule: false", "feefd2a0d3a1847e"],
   ["Module.name: Kim11.Basic", "4fe249e971735181"],
   ["Package.id?: (some kim11)", "8317ab34a5f08fc0"],
   ["Module.leanArgs: #[]", "00000000000006bb"]],
- "depHash": "9a35261bf7b24933"}
+ "depHash": "c6d62131d3784dfd"}

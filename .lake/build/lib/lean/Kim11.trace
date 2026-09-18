@@ -15,7 +15,7 @@
      [["kim11/Kim11:extraDep", [["@kim11:extraDep", "00000000000006bb"]]],
       ["imports",
        [["Kim11.Basic transitive imports (legacy)", "00000000000006bb"],
-        ["Kim11.Basic:importAllArts", "8b6f9dbcc5d1ea69"]]]]],
+        ["Kim11.Basic:importAllArts", "625c9341ad0983f4"]]]]],
     ["libs",
      [["import dynlibs", "00000000000006bb"],
       ["package external libraries", "00000000000006bb"],
@@ -29,4 +29,4 @@
   ["Module.name: Kim11", "216938ccc8b641bd"],
   ["Package.id?: (some kim11)", "8317ab34a5f08fc0"],
   ["Module.leanArgs: #[]", "00000000000006bb"]],
- "depHash": "ff87c8a110805f3f"}
+ "depHash": "1b44aef1010a4c95"}
