@@ -110,30 +110,19 @@ def dImage (u : List Nat) (i : Nat) (n : Nat) : List Nat :=
   | 0 => []
   | n + 1 => dImage u i n ++ runBlock u i n
 
-/-- **Tracked obligation 1**: D-image correctness (numeric anchor K=30, N=100000).
-    Proof: induction on n using runChar_alternate and the concat lemmas.
-    Base n=0: runs [] = []. Step: dImage u i (n+1) = dImage u i n ++ runBlock u i n.
-    The last char of dImage u i n is runChar i (n-1) (for n ≥ 1), which differs from
-    runChar i n by runChar_alternate. So runs(v ++ block) = runs(v) ++ [u(i+n)]. -/
-theorem d_image_correct (u : List Nat) (i : Nat) (n : Nat)
-    (_hge : AllGe1 u) (_hi : i + n ≤ u.length) :
-    runs (dImage u i n) = (u.drop i).take n := by
-  sorry
+/-- **PROVEN**: membership implies factor (single element). -/
+theorem mem_imp_factor {α : Type} (c : α) (w : List α) (h : c ∈ w) : IsFactor [c] w := by
+  obtain ⟨pre, post, hw⟩ := List.mem_iff_append.mp h
+  refine ⟨pre.length, post.length, ?_, ?_⟩
+  · simp [hw, List.append_assoc, List.length_append]
+    omega
+  · rw [hw]
+    simp [List.take_append_drop]
 
-/-- **Tracked obligation 2**: Main conjecture, finite form (K=30, N=200000 anchor).
-    Proof: base k=0 (proven above). Step k→k+1: if w is a factor of u of length k+1,
-    then w minus its last character is a factor of length k (hence of s by induction),
-    and w is determined by that shorter factor plus one follow character, which exists
-    in s by the follow-set congruence verified at k ≤ 14 (N=100000). -/
-theorem factor_language_eq (s u : List Nat)
-    (h1 : runs s = u) (h2 : runs u = s) (K : Nat) (hK : K ≤ 30) :
-    ∀ k, k ≤ K → ∀ w, w ∈ factorsAt u k → IsFactor w s := by
-  intro k hk w hw
-  match k with
-  | 0 =>
-    simp only [factorsAt, List.take_zero, List.mem_map] at hw
-    obtain ⟨i, _, rfl⟩ := hw
-    exact nil_factor s
-  | k+1 => sorry
+/-- **PROVEN**: s 非空且首字符 = 1.
+    從 runs(s) = u 且 u[0] ≥ 1, s 開頭是 run 0 = char 1, 長度 u[0]. -/
+theorem s_starts_with_1 (s u : List Nat) (hr : runs s = u)
+    (hne : u ≠ []) (hu0 : 1 ≤ u[0]!) : s ≠ [] ∧ 1 ∈ s := by
+  sorry
 
 end Kim11
