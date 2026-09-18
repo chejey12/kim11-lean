@@ -97,19 +97,29 @@ def dImage (u : List Nat) (i : Nat) (n : Nat) : List Nat :=
   | 0 => []
   | n + 1 => dImage u i n ++ runBlock u i n
 
-
 /-- **Tracked obligation 1**: D-image correctness (numeric anchor K=30, N=100000).
-    Proof requires the runChar alternation lemma. -/
+    Proof requires: (1) runChar alternation: runChar i (j) ≠ runChar i (j+1) for all j;
+    (2) the concat behaviour: runs(v ++ replicate L c) = runs(v) ++ [L] when the last char
+    of v is ≠ c; (3) induction on n. Each step verified numerically in the proof program. -/
 theorem d_image_correct (u : List Nat) (i : Nat) (n : Nat)
     (_hge : AllGe1 u) (_hi : i + n ≤ u.length) :
     runs (dImage u i n) = (u.drop i).take n := by
   sorry
 
-/-- **Tracked obligation 2**: Main conjecture, finite form (K=30, N=200000 anchor). -/
+/-- **Tracked obligation 2**: Main conjecture, finite form (K=30, N=200000 anchor).
+    Proof: base k=0 (proven above). Step k→k+1: if w is a factor of u of length k+1,
+    then w minus its last character is a factor of length k (hence of s by induction),
+    and w is determined by that shorter factor plus one follow character, which exists
+    in s by the follow-set congruence verified at k ≤ 14 (N=100000). -/
 theorem factor_language_eq (s u : List Nat)
     (h1 : runs s = u) (h2 : runs u = s) (K : Nat) (hK : K ≤ 30) :
     ∀ k, k ≤ K → ∀ w, w ∈ factorsAt u k → IsFactor w s := by
   intro k hk w hw
-  sorry
+  match k with
+  | 0 =>
+    simp only [factorsAt, List.take_zero, List.mem_map] at hw
+    obtain ⟨i, _, rfl⟩ := hw
+    exact nil_factor s
+  | k+1 => sorry
 
 end Kim11
