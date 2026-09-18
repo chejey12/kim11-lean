@@ -1,9 +1,9 @@
 {"synthetic": false,
  "schemaVersion": "2025-09-10",
  "outputs":
- {"o": ["0efb6b0b2e83d6e4.olean"],
+ {"o": ["b858460754c1d83e.olean"],
   "m": false,
-  "i": "c6349bdfd8aa038e.ilean",
+  "i": "403858c79e9ec0b6.ilean",
   "c": "fb6488a233269cca.c"},
  "log":
  [{"message":
@@ -35,6 +35,10 @@
    "level": "warning"},
   {"message":
    "Kim11/Basic.lean:137:5: Variable name `hne` is not explicitly referenced.\n\nThe binding can be removed (if unused) or named `_` (if used implicitly).\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`",
+   "level": "warning"},
+  {"message": "Kim11/Basic.lean:160:8: declaration uses `sorry`",
+   "level": "warning"},
+  {"message": "Kim11/Basic.lean:167:8: declaration uses `sorry`",
    "level": "warning"}],
  "inputs":
  [["Kim11.Basic:deps",
@@ -48,10 +52,10 @@
       ["module plugins", "00000000000006bb"]]]]],
   ["Lean 4.32.1, commit f054605aea4b840552cca2e725580bffd1e1b704",
    "4ce1780d8d26fd00"],
-  ["/root/kim11-lean/Kim11/Basic.lean", "3716168b393bda57"],
+  ["/root/kim11-lean/Kim11/Basic.lean", "23f85dd9e668b1f4"],
   ["options", "00000000000006bb"],
   ["isModule: false", "feefd2a0d3a1847e"],
   ["Module.name: Kim11.Basic", "4fe249e971735181"],
   ["Package.id?: (some kim11)", "8317ab34a5f08fc0"],
   ["Module.leanArgs: #[]", "00000000000006bb"]],
- "depHash": "c6d62131d3784dfd"}
+ "depHash": "9d7ccd74ec53a30a"}

@@ -152,4 +152,27 @@ theorem s_starts_with_1 (s u : List Nat) (hr : runs s = u)
     subst ha1
     exact List.mem_cons_self ..
 
+
+/-- **Tracked obligation**: D-image correctness (numeric anchor K=30, N=100000).
+    Proof requires: (1) runChar alternation (PROVEN above), 
+    (2) concat behaviour via runs_prepend_merge/expand (PROVEN above),
+    (3) strong induction on n. -/
+theorem d_image_correct (u : List Nat) (i : Nat) (n : Nat)
+    (hge : AllGe1 u) (hi : i + n ≤ u.length) :
+    runs (dImage u i n) = (u.drop i).take n := by
+  sorry
+
+/-- **Tracked obligation**: Main conjecture finite form (K=30, N=200000 anchor).
+    k=0 proven above (nil_factor). k≥1 uses mem_imp_factor + follow-set congruence. -/
+theorem factor_language_eq (s u : List Nat)
+    (h1 : runs s = u) (h2 : runs u = s) (K : Nat) (hK : K ≤ 30) :
+    ∀ k, k ≤ K → ∀ w, w ∈ factorsAt u k → IsFactor w s := by
+  intro k hk w hw
+  match k with
+  | 0 =>
+    simp only [factorsAt, List.take_zero, List.mem_map] at hw
+    obtain ⟨i, _, rfl⟩ := hw
+    exact nil_factor s
+  | k+1 => sorry
+
 end Kim11
