@@ -1,9 +1,9 @@
 {"synthetic": false,
  "schemaVersion": "2025-09-10",
  "outputs":
- {"o": ["ccafd24a694bae6f.olean"],
+ {"o": ["4cc70dab2a883bc3.olean"],
   "m": false,
-  "i": "9a3a6275d11daed1.ilean",
+  "i": "359811b4c76f40ca.ilean",
   "c": "89f73f16d1a8f09e.c"},
  "log":
  [{"message":
@@ -15,9 +15,21 @@
   {"message":
    "Kim11/Basic.lean:67:22: Variable name `s` is not explicitly referenced.\n\nThe binding can be removed (if unused) or named `_` (if used implicitly).\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`",
    "level": "warning"},
-  {"message": "Kim11/Basic.lean:104:8: declaration uses `sorry`",
+  {"message":
+   "Kim11/Basic.lean:96:10: This simp argument is unused:\n  h0\n\nHint: Omit it from the simp argument list.\n  simp [h0̵,̵ ̵h̵1]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`",
    "level": "warning"},
-  {"message": "Kim11/Basic.lean:114:8: declaration uses `sorry`",
+  {"message":
+   "Kim11/Basic.lean:96:14: This simp argument is unused:\n  h1\n\nHint: Omit it from the simp argument list.\n  simp [h0,̵ ̵h̵1̵]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`",
+   "level": "warning"},
+  {"message":
+   "Kim11/Basic.lean:100:10: This simp argument is unused:\n  h0\n\nHint: Omit it from the simp argument list.\n  simp [h0̵,̵ ̵h̵1]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`",
+   "level": "warning"},
+  {"message":
+   "Kim11/Basic.lean:100:14: This simp argument is unused:\n  h1\n\nHint: Omit it from the simp argument list.\n  simp [h0,̵ ̵h̵1̵]\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`",
+   "level": "warning"},
+  {"message": "Kim11/Basic.lean:118:8: declaration uses `sorry`",
+   "level": "warning"},
+  {"message": "Kim11/Basic.lean:128:8: declaration uses `sorry`",
    "level": "warning"}],
  "inputs":
  [["Kim11.Basic:deps",
@@ -31,10 +43,10 @@
       ["module plugins", "00000000000006bb"]]]]],
   ["Lean 4.32.1, commit f054605aea4b840552cca2e725580bffd1e1b704",
    "4ce1780d8d26fd00"],
-  ["/root/kim11-lean/Kim11/Basic.lean", "1cfb78261eed7882"],
+  ["/root/kim11-lean/Kim11/Basic.lean", "cd3b20076c82d0fb"],
   ["options", "00000000000006bb"],
   ["isModule: false", "feefd2a0d3a1847e"],
   ["Module.name: Kim11.Basic", "4fe249e971735181"],
   ["Package.id?: (some kim11)", "8317ab34a5f08fc0"],
   ["Module.leanArgs: #[]", "00000000000006bb"]],
- "depHash": "3d618ffc3e77ab2d"}
+ "depHash": "909519b85bf139dc"}

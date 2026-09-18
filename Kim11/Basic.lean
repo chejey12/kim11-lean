@@ -87,6 +87,19 @@ theorem runs_single (c : Nat) : runs [c] = [1] := rfl
 def runChar (start j : Nat) : Nat :=
   if (start + j) % 2 = 0 then 1 else 2
 
+/-- **PROVEN**: adjacent runs have different characters. -/
+theorem runChar_alternate (start j : Nat) : runChar start j ≠ runChar start (j+1) := by
+  unfold runChar
+  split
+  · rename_i h0
+    have h1 : (start + j + 1) % 2 = 1 := by omega
+    simp [h0, h1]
+    omega
+  · rename_i h0
+    have h1 : (start + j + 1) % 2 = 0 := by omega
+    simp [h0, h1]
+    omega
+
 /-- Block for run j with length from u. -/
 def runBlock (u : List Nat) (i j : Nat) : List Nat :=
   List.replicate (u.getD (i + j) 1) (runChar i j)
@@ -98,9 +111,10 @@ def dImage (u : List Nat) (i : Nat) (n : Nat) : List Nat :=
   | n + 1 => dImage u i n ++ runBlock u i n
 
 /-- **Tracked obligation 1**: D-image correctness (numeric anchor K=30, N=100000).
-    Proof requires: (1) runChar alternation: runChar i (j) ≠ runChar i (j+1) for all j;
-    (2) the concat behaviour: runs(v ++ replicate L c) = runs(v) ++ [L] when the last char
-    of v is ≠ c; (3) induction on n. Each step verified numerically in the proof program. -/
+    Proof: induction on n using runChar_alternate and the concat lemmas.
+    Base n=0: runs [] = []. Step: dImage u i (n+1) = dImage u i n ++ runBlock u i n.
+    The last char of dImage u i n is runChar i (n-1) (for n ≥ 1), which differs from
+    runChar i n by runChar_alternate. So runs(v ++ block) = runs(v) ++ [u(i+n)]. -/
 theorem d_image_correct (u : List Nat) (i : Nat) (n : Nat)
     (_hge : AllGe1 u) (_hi : i + n ≤ u.length) :
     runs (dImage u i n) = (u.drop i).take n := by
