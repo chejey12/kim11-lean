@@ -1,9 +1,9 @@
 {"synthetic": false,
  "schemaVersion": "2025-09-10",
  "outputs":
- {"o": ["b38db322c1af2756.olean"],
+ {"o": ["be575eed9bcd61b6.olean"],
   "m": false,
-  "i": "28011d10953edfc7.ilean",
+  "i": "8db74a7b98370b38.ilean",
   "c": "c60fc678d6ff5683.c"},
  "log":
  [{"message":
@@ -12,11 +12,9 @@
   {"message":
    "Kim11/Basic.lean:6:5: Variable name `x` is not explicitly referenced.\n\nThe binding can be removed (if unused) or named `_` (if used implicitly).\n\nNote: This linter can be disabled with `set_option linter.unusedVariables false`",
    "level": "warning"},
-  {"message": "Kim11/Basic.lean:30:8: declaration uses `sorry`",
+  {"message": "Kim11/Basic.lean:51:8: declaration uses `sorry`",
    "level": "warning"},
-  {"message": "Kim11/Basic.lean:49:8: declaration uses `sorry`",
-   "level": "warning"},
-  {"message": "Kim11/Basic.lean:60:8: declaration uses `sorry`",
+  {"message": "Kim11/Basic.lean:62:8: declaration uses `sorry`",
    "level": "warning"}],
  "inputs":
  [["Kim11.Basic:deps",
@@ -30,10 +28,10 @@
       ["module plugins", "00000000000006bb"]]]]],
   ["Lean 4.32.1, commit f054605aea4b840552cca2e725580bffd1e1b704",
    "4ce1780d8d26fd00"],
-  ["/root/kim11-lean/Kim11/Basic.lean", "d8f8141859cc6711"],
+  ["/root/kim11-lean/Kim11/Basic.lean", "7e5367ab85a15f7c"],
   ["options", "00000000000006bb"],
   ["isModule: false", "feefd2a0d3a1847e"],
   ["Module.name: Kim11.Basic", "4fe249e971735181"],
   ["Package.id?: (some kim11)", "8317ab34a5f08fc0"],
   ["Module.leanArgs: #[]", "00000000000006bb"]],
- "depHash": "c0959ec2670f5f8a"}
+ "depHash": "0ea868d07c67e752"}
