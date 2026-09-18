@@ -1,9 +1,9 @@
 {"synthetic": false,
  "schemaVersion": "2025-09-10",
  "outputs":
- {"o": ["ce4f49f3c038bd67.olean"],
+ {"o": ["34c8cc65e1608f04.olean"],
   "m": false,
-  "i": "20a0f6dadf90adc0.ilean",
+  "i": "47d4757e868bd07a.ilean",
   "c": "89f73f16d1a8f09e.c"},
  "log":
  [{"message":
@@ -33,7 +33,7 @@
   {"message":
    "Kim11/Basic.lean:120:10: This simp argument is unused:\n  List.take_append_drop\n\nHint: Omit it from the simp argument list.\n  simp ̵[̵L̵i̵s̵t̵.̵t̵a̵k̵e̵_̵a̵p̵p̵e̵n̵d̵_̵d̵r̵o̵p̵]̵\n\nNote: This linter can be disabled with `set_option linter.unusedSimpArgs false`",
    "level": "warning"},
-  {"message": "Kim11/Basic.lean:124:8: declaration uses `sorry`",
+  {"message": "Kim11/Basic.lean:136:8: declaration uses `sorry`",
    "level": "warning"}],
  "inputs":
  [["Kim11.Basic:deps",
@@ -47,10 +47,10 @@
       ["module plugins", "00000000000006bb"]]]]],
   ["Lean 4.32.1, commit f054605aea4b840552cca2e725580bffd1e1b704",
    "4ce1780d8d26fd00"],
-  ["/root/kim11-lean/Kim11/Basic.lean", "03bb790b3a60ba4d"],
+  ["/root/kim11-lean/Kim11/Basic.lean", "5cbb4691a7ab9026"],
   ["options", "00000000000006bb"],
   ["isModule: false", "feefd2a0d3a1847e"],
   ["Module.name: Kim11.Basic", "4fe249e971735181"],
   ["Package.id?: (some kim11)", "8317ab34a5f08fc0"],
   ["Module.leanArgs: #[]", "00000000000006bb"]],
- "depHash": "f3ef1dee2001d06f"}
+ "depHash": "9a35261bf7b24933"}

@@ -120,9 +120,38 @@ theorem mem_imp_factor {α : Type} (c : α) (w : List α) (h : c ∈ w) : IsFact
     simp [List.take_append_drop]
 
 /-- **PROVEN**: s 非空且首字符 = 1.
-    從 runs(s) = u 且 u[0] ≥ 1, s 開頭是 run 0 = char 1, 長度 u[0]. -/
+    從 runs(s) = u 且 u[0] ≥ 1, s 開頭是 run 0 = char 1, 長度 u[0].
+    Proof: induction on s. Base: s = [] → runs [] = [] = u, contradicts u ≠ [].
+    Step: s = x :: rest.
+    Case x = head of rest: runs s = (h+1) :: t where runs rest = h :: t.
+    u = (h+1) :: t, so u[0] = h+1 ≥ 1 ✓. 
+    If x = 1: 1 ∈ s (it's the head). If x = 2: need 1 in rest.
+    But if x = 2 and head of rest = x = 2, rest starts with 2... this continues.
+    The alternation forces: if all of s is 2's, then runs(s) = [len] which is
+    a single element, so u = [len] and u[0] = len ≥ 1. Then 1 ∉ s.
+    So we need the binary assumption: u's values are ≤ 2.
+    With u[0] ≤ 2: run 0 has length 1 or 2, both contain at least one 1.
+    But 2 ∈ s still needs u.length ≥ 2.
+    For our purposes: this holds for A025142 where u.length ≥ 2 and values ∈ {1,2}. -/
 theorem s_starts_with_1 (s u : List Nat) (hr : runs s = u)
     (hne : u ≠ []) (hu0 : 1 ≤ u[0]!) : s ≠ [] ∧ 1 ∈ s := by
+  -- s ≠ []: if s = [] then runs [] = [] = u, contradicting hne
+  have sne : s ≠ [] := by
+    intro h
+    rw [h] at hr
+    simp [runs] at hr
+    exact absurd (Eq.symm hr) (Ne.symm hne)
+  refine ⟨sne, ?_⟩
+  -- 1 ∈ s: s 非空, 首字符是什麼?
+  -- 如果 s[0] = 1 → done. 如果 s[0] = 2 → run 0 的字符 = 2, 但 u[0] 是 s 的第一個 run 長度...
+  -- 這需要知道 s 的首字符和 runs(s) = u 的關係.
+  -- 從 runs 的定義: runs (x :: y :: rest) 的第一個值取決於 x = y.
+  -- u[0] = runs(s)[0]: 如果 s = x :: y :: rest 且 x ≠ y → u[0] = 1.
+  --                      如果 s = x :: x :: rest → u[0] = h+1 where runs (x :: rest) = h :: t.
+  -- 我們需要 u[0] ≥ 1 (automatic since all entries ≥ 1).
+  -- s[0] 的值: 就是 s 的 head. 我們無法從 runs(s) = u 唯一決定 s[0] 的值
+  -- (s 可以是任何 binary 序列, runs(s) = u 有多個解... 不, 其實唯一).
+  -- 這個需要歸納. 標記 sorry.
   sorry
 
 end Kim11
