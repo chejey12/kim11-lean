@@ -97,4 +97,19 @@ def dImage (u : List Nat) (i : Nat) (n : Nat) : List Nat :=
   | 0 => []
   | n + 1 => dImage u i n ++ runBlock u i n
 
+
+/-- **Tracked obligation 1**: D-image correctness (numeric anchor K=30, N=100000).
+    Proof requires the runChar alternation lemma. -/
+theorem d_image_correct (u : List Nat) (i : Nat) (n : Nat)
+    (_hge : AllGe1 u) (_hi : i + n ≤ u.length) :
+    runs (dImage u i n) = (u.drop i).take n := by
+  sorry
+
+/-- **Tracked obligation 2**: Main conjecture, finite form (K=30, N=200000 anchor). -/
+theorem factor_language_eq (s u : List Nat)
+    (h1 : runs s = u) (h2 : runs u = s) (K : Nat) (hK : K ≤ 30) :
+    ∀ k, k ≤ K → ∀ w, w ∈ factorsAt u k → IsFactor w s := by
+  intro k hk w hw
+  sorry
+
 end Kim11
